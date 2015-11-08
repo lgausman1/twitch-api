@@ -2,9 +2,11 @@
     width: 100%;
     height: 100%;
     text-align: center;
+    box-sizing: border-box;
+    background-color: purple;
 }
 .container {
-    width: 600px;
+    width: 700px;
     margin: 0 auto;
     background-color: yellow;
 }
@@ -12,6 +14,8 @@
 #feeds {
 	background-color: white;
 	text-align: left;
+	border: 1px solid #ccc;
+	padding: 20px;
 }
 
 #feeds ul {
@@ -44,4 +48,9 @@
 
 .viewers {
 	font-size: 0.9em;
+}
+
+.searchBox {
+	padding: 20px;
+	text-align: left;
 }
