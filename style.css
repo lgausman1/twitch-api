@@ -18,18 +18,30 @@
 	list-style-type: none;
 }
 
+#feeds h2 {
+	margin-top: 0;
+	margin-bottom: 3px;
+}
+
 #feeds img {
 	display: inline;
 	float: left;
 	margin-right: 20px;
+	width: 150px;
+    height: 100px;
 }
 
 #feeds li {
 	padding: 20px;
+	border-bottom: 1px dotted #ccc;
 }
 
 #feeds li:after {
 	content: "";
   	display: table;
   	clear: both;
+}
+
+.viewers {
+	font-size: 0.9em;
 }
