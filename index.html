@@ -4,60 +4,17 @@
         <meta charset="UTF-8">
         <title>Twitch API</title>
         <link href="style.css" rel="stylesheet" type="text/css">
-<!--        <script>
-            window.hollaback = function(data) {
-              alert('Your public IP address is: ' + data.ip);
-            };
-        </script>
-        <script src="https://mathiasbynens.be/demo/ip?callback=hollaback"></script>-->
+
     </head>
-    <body onload="loadXMLDoc()">
-            <div class="wrapper">
-                <div class="container">
-                    
+    <body>
+        <div class="wrapper">
+            <div class="container">
+                <div id="feeds">
+                  
                 </div>
             </div>
-    <div id = 'twitterFeed'></div>
-        <script>
-        function myCallback(dataWeGotViaJsonp){
+        </div>
 
-            //var twitterEntry;
-            //var text = '';
-            //var len = dataWeGotViaJsonp.length;
-            //for(var i=0;i<len;i++){
-            //    twitterEntry = dataWeGotViaJsonp[i];
-            //    //text += '<p>' + twitterEntry['text'] + '</p>'
-            //    console.log(twitterEntry);
-            //}
-            //document.getElementById('twitterFeed').innerHTML = text;
-        }
-        </script>
-        <!--<script type="text/javascript" src="https://api.twitch.tv/kraken/search/streams?q=starcraft&callback=myCallback"></script>-->
-        <script type="text/javascript">
-            function loadXMLDoc() {
-                var myURL = "https://api.twitch.tv/kraken/search/streams?q=starcraft&callback=myCallback"; // append to search results
-                var xmlhttp  = new XMLHttpRequest();
-            
-                xmlhttp.onreadystatechange = function() {
-                    if (xmlhttp.readyState == XMLHttpRequest.DONE ) {
-                       if(xmlhttp.status == 200){
-                           var myText = xmlhttp.responseText; //how do i return json data here?  
-                           var data = myText.substring(myText.indexOf("(") + 1, myText.lastIndexOf(")"));
-                           document.getElementById("twitterFeed").innerHTML = data;
-                       }
-                       else if(xmlhttp.status == 400) {
-                          alert('There was an error 400')
-                       }
-                       else {
-                           alert('something else other than 200 was returned')
-                       }
-                    }
-                }
-            
-                xmlhttp.open("GET", myURL, true);
-                xmlhttp.send();
-            }
-    </script>
     </body>
     <script src="app.js"></script>
 </html>

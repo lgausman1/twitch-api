@@ -8,3 +8,28 @@
     margin: 0 auto;
     background-color: yellow;
 }
+
+#feeds {
+	background-color: white;
+	text-align: left;
+}
+
+#feeds ul {
+	list-style-type: none;
+}
+
+#feeds img {
+	display: inline;
+	float: left;
+	margin-right: 20px;
+}
+
+#feeds li {
+	padding: 20px;
+}
+
+#feeds li:after {
+	content: "";
+  	display: table;
+  	clear: both;
+}
