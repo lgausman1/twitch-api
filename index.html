@@ -1,28 +1,31 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Twitch API</title>
-        <link href="style.css" rel="stylesheet" type="text/css">
-    </head>
-    <body>
-        <div class="wrapper">
-            <div class="container">
-            <div id="feedsHead">
-              <div class="searchBox">
-                <input type="text" id="streamSearch" size="35" placeholder="Search query" />
-                <button id="searchBtn">Search</button>
-              </div>
-            </div>
-                <div id="feeds">
-                  
-                </div>
-            </div>
-        </div>
-
-    </body>
-    <script src="app.js"></script>
-    <script>
-        window.onload = buildQuery;
-    </script>
+  <head>
+      <meta charset="UTF-8">
+      <title>Twitch API</title>
+      <link href="style.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+      <div class="wrapper">
+          <div class="container">
+              <div id="feedsHead">
+                <div class="searchBox">
+                  <input type="text" id="streamSearch" size="50" placeholder="Search query" />
+                  <button id="searchBtn">Search</button>
+                </div><!-- end searchBox -->
+              </div><!-- end feedsHead -->
+              <div id="subHead">
+                <div id="feedTotal"></div>
+                <div id="pagination"><p>pagination</p></div>
+              </div><!-- end subHead -->
+              <div id="feeds">
+                
+              </div><!-- end feeds -->
+          </div><!-- end container -->
+      </div><!-- end wrapper -->
+  </body>
+  <script src="app.js"></script>
+  <script>
+      window.onload = buildQuery;
+  </script>
 </html>

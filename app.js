@@ -13,17 +13,30 @@ function searchStreams() {
 	}
 	// else streamSrc equals input value
 	else {
-		streamSrc = searchInput.value;
-		buildQuery();
 
+		streamSrc = searchInput.value;
+		var oldScript = document.getElementById('script');
+		document.head.removeChild(oldScript); // removes head element
+		buildQuery();
+		searchInput.value = "";
 	}
 }
 
 // dynamically build script tag and insert in header
 function buildQuery() {
 	var head = document.head;
+	// if source is !null ?????
+		 //  if (head.childNodes.length > 1) {
+	  //  head.removeChild(head.lastChild);
+	  // }
+	  // documentObject.lastChild.previousElementSibling
+	  // document.head.children returns array with all elements
+	  // document.head.getElementsByTagName('script') returns array of scripts
+	// document.head.replaceChild();
+
 	var script = document.createElement('script');
 	script.type = 'text/javascript';
+	script.id = "script";
 	script.src = 'https://api.twitch.tv/kraken/search/streams?q=' + streamSrc + '&callback=myCallback' + '&limit=10&offset=' + offset + '';
 	head.appendChild(script);	
 }
@@ -31,12 +44,21 @@ function buildQuery() {
 // retrieve data from api
 function myCallback(data){
 
+	// var scripts = document.head.getElementsByTagName('script');
+	// if(scripts.length > 0) {
+
+ //     document.head.removeChild(scripts[0]);
+
+	// }
+
   	console.log(data);
 	// declare variables and build feeds
 	var feedContainer = document.getElementById("feeds");
 	var feedDiv = document.createDocumentFragment();
-	var feedTotal = document.createElement('p');
-	feedTotal.textContent = "Total results: " + data._total;
+	var feedTotalDiv = document.getElementById("feedTotal");
+	var feedTotalP = document.createElement('p');
+	feedTotalP.textContent = "Total results: " + data._total;
+
 	var feedList = document.createElement('ul');
 	var streamsLen = data.streams.length;
 
@@ -65,13 +87,18 @@ function myCallback(data){
 			gameTitle.appendChild(viewerSpan);
 			li.appendChild(gameDesc);
 			feedList.appendChild(li);
-			feedDiv.appendChild(feedTotal);
-			feedDiv.appendChild(feedList); // this is my doc frag
+			feedDiv.appendChild(feedList);
 			
-
 		} // end for loop
+		feedTotalDiv.innerHTML = "";
+		feedTotalDiv.appendChild(feedTotalP);
+		
 		feedContainer.appendChild(feedDiv);	
+	
 	} // end buildFeed
+	
+	// if no search results render message to page
+
 	buildFeed();
     
 }
