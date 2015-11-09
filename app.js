@@ -15,6 +15,7 @@ function searchStreams() {
 	else {
 
 		streamSrc = searchInput.value;
+		// find and remove previous script query from DOM
 		var oldScript = document.getElementById('script');
 		document.head.removeChild(oldScript); // removes head element
 		buildQuery();
@@ -25,15 +26,6 @@ function searchStreams() {
 // dynamically build script tag and insert in header
 function buildQuery() {
 	var head = document.head;
-	// if source is !null ?????
-		 //  if (head.childNodes.length > 1) {
-	  //  head.removeChild(head.lastChild);
-	  // }
-	  // documentObject.lastChild.previousElementSibling
-	  // document.head.children returns array with all elements
-	  // document.head.getElementsByTagName('script') returns array of scripts
-	// document.head.replaceChild();
-
 	var script = document.createElement('script');
 	script.type = 'text/javascript';
 	script.id = "script";
@@ -43,13 +35,6 @@ function buildQuery() {
 
 // retrieve data from api
 function myCallback(data){
-
-	// var scripts = document.head.getElementsByTagName('script');
-	// if(scripts.length > 0) {
-
- //     document.head.removeChild(scripts[0]);
-
-	// }
 
   	console.log(data);
 	// declare variables and build feeds
