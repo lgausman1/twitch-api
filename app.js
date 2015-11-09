@@ -1,11 +1,34 @@
-// dynamically build script tag and insert in header
+// set up variables for search query and pagination
 var streamSrc = 'starcraft';
 var offset = 0;
-var head = document.getElementsByTagName('head')[0];
-var script = document.createElement('script');
-script.type = 'text/javascript';
-script.src = 'https://api.twitch.tv/kraken/search/streams?q=' + streamSrc + '&callback=myCallback' + '&limit=10&offset=' + offset + '';
-head.appendChild(script);
+
+var searchBtn = document.getElementById('searchBtn');
+var searchInput = document.getElementById('streamSearch');
+
+searchBtn.addEventListener('click', searchStreams, false);
+// element.addEventListener('click', myFunctionReference , false);
+function searchStreams() {
+	// if searchInput value is null set default search
+	if(searchInput.value.length == 0) {
+		alert("enter a stream to search");
+	}
+	// else streamSrc equals input value
+	else {
+		streamSrc = searchInput.value;
+		//alert(streamSrc);
+		buildQuery();
+	}
+}
+
+
+// dynamically build script tag and insert in header
+function buildQuery() {
+	var head = document.getElementsByTagName('head')[0];
+	var script = document.createElement('script');
+	script.type = 'text/javascript';
+	script.src = 'https://api.twitch.tv/kraken/search/streams?q=' + streamSrc + '&callback=myCallback' + '&limit=10&offset=' + offset + '';
+	head.appendChild(script);	
+}
 
 // retrieve data from api
 function myCallback(data){
@@ -51,7 +74,4 @@ function myCallback(data){
 	// data._links.self: "https://api.twitch.tv/kraken/search/streams?limit=10&offset=0&q=starcraft"
     
 }
-
-
-
 

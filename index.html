@@ -4,7 +4,6 @@
         <meta charset="UTF-8">
         <title>Twitch API</title>
         <link href="style.css" rel="stylesheet" type="text/css">
-
     </head>
     <body>
         <div class="wrapper">
@@ -12,7 +11,7 @@
             <div id="feedsHead">
               <div class="searchBox">
                 <input type="text" id="streamSearch" size="35" placeholder="Search query" />
-                <button>Search</button>
+                <button id="searchBtn">Search</button>
               </div>
             </div>
                 <div id="feeds">
@@ -23,4 +22,7 @@
 
     </body>
     <script src="app.js"></script>
+    <script>
+        window.onload = buildQuery;
+    </script>
 </html>
