@@ -17,7 +17,7 @@ function searchStreams() {
 		streamSrc = searchInput.value;
 		// find and remove previous script query from DOM
 		var oldScript = document.getElementById('script');
-		document.head.removeChild(oldScript); // removes head element
+		document.head.removeChild(oldScript);
 		buildQuery();
 		searchInput.value = "";
 	}
@@ -28,10 +28,34 @@ function buildQuery() {
 	var head = document.head;
 	var script = document.createElement('script');
 	script.type = 'text/javascript';
-	script.id = "script";
-	script.src = 'https://api.twitch.tv/kraken/search/streams?q=' + streamSrc + '&callback=myCallback' + '&limit=10&offset=' + offset + '';
+	script.id = "script"; // need id to remove element later
+	script.src = 'https://api.twitch.tv/kraken/search/streams?q=' + streamSrc + '&callback=myCallback' + '&limit=10&offset=' + offset + ''; // might not need offset => append myCallback to prev and next links
 	head.appendChild(script);	
 }
+
+var nextStream = document.getElementById("nextStream");
+// refactor to build without variables?
+var nextLink = document.createElement('button');
+
+nextStream.appendChild(nextLink);
+var nextText = document.createElement('p');
+nextText.textContent = "next";
+nextLink.appendChild(nextText);
+
+(function buildPagination() {
+
+	nextLink.addEventListener('click', function() {
+		offset = offset + 10;
+		console.log(offset);
+		
+		// remove old script
+		var oldScript = document.getElementById('script');
+		document.head.removeChild(oldScript);
+		
+		buildQuery();
+	}, false); // end nextLink click event
+
+}()); // end buildPagination
 
 // retrieve data from api
 function myCallback(data){
@@ -80,11 +104,11 @@ function myCallback(data){
 		
 		feedContainer.appendChild(feedDiv);	
 	
-	} // end buildFeed
+	} // end buildFeed => prolly could make this self invoking too
 	
 	// if no search results render message to page
 
 	buildFeed();
     
-}
+} // end myCallback
 
