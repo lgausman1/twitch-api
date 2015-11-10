@@ -8,12 +8,13 @@ var searchInput = document.getElementById('streamSearch');
 searchBtn.addEventListener('click', searchStreams, false);
 function searchStreams() {
 	// if searchInput value is null 
-	if(searchInput.value.length == 0) {
+	if(searchInput.value.length === 0) {
 		alert("enter a stream to search");
 	}
 	// else streamSrc equals input value
 	else {
-
+		offset = 0;
+		streamCountText.textContent = (offset + 1) + "/" + (offset + 10);
 		streamSrc = searchInput.value;
 		// find and remove previous script query from DOM
 		var oldScript = document.getElementById('script');
@@ -36,22 +37,27 @@ function buildQuery() {
 var prevStream = document.getElementById("prevStream");
 var prevLink = document.createElement('button');
 var prevText = document.createElement('p');
-prevText.textContent = "prev";
+prevText.innerHTML = "&#9668;"; //  &#9668;
 prevStream.appendChild(prevLink);
 prevLink.appendChild(prevText);
-
 
 var nextStream = document.getElementById("nextStream");
 var nextLink = document.createElement('button');
 var nextText = document.createElement('p');
-nextText.textContent = "next";
+nextText.innerHTML = "&#9658"; //  &#9658;
 nextStream.appendChild(nextLink);
 nextLink.appendChild(nextText);
+
+var streamCount = document.getElementById('streamCount');
+var streamCountText = document.createElement('p');
+streamCountText.textContent = (offset + 1) + "/" + (offset + 10);
+streamCount.appendChild(streamCountText);
 
 (function buildPagination() {
 
 	nextLink.addEventListener('click', function() {
 		offset = offset + 10;
+		streamCountText.textContent = (offset + 1) + "/" + (offset + 10);
 		console.log(offset);
 		// remove old script
 		var oldScript = document.getElementById('script');
@@ -61,6 +67,7 @@ nextLink.appendChild(nextText);
 
 	prevLink.addEventListener('click', function() {
 		offset = offset - 10;
+		streamCountText.textContent = (offset + 1) + "/" + (offset + 10);
 		console.log(offset);
 		// remove old script
 		var oldScript = document.getElementById('script');
