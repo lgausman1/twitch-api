@@ -73,3 +73,9 @@
 	padding: 20px;
 	text-align: left;
 }
+
+.stream {
+	display: inline;
+	float: left;
+	margin-left: 10px;
+}

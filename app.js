@@ -29,17 +29,23 @@ function buildQuery() {
 	var script = document.createElement('script');
 	script.type = 'text/javascript';
 	script.id = "script"; // need id to remove element later
-	script.src = 'https://api.twitch.tv/kraken/search/streams?q=' + streamSrc + '&callback=myCallback' + '&limit=10&offset=' + offset + ''; // might not need offset => append myCallback to prev and next links
+	script.src = 'https://api.twitch.tv/kraken/search/streams?q=' + streamSrc + '&callback=myCallback' + '&limit=10&offset=' + offset + ''; 
 	head.appendChild(script);	
 }
 
-var nextStream = document.getElementById("nextStream");
-// refactor to build without variables?
-var nextLink = document.createElement('button');
+var prevStream = document.getElementById("prevStream");
+var prevLink = document.createElement('button');
+var prevText = document.createElement('p');
+prevText.textContent = "prev";
+prevStream.appendChild(prevLink);
+prevLink.appendChild(prevText);
 
-nextStream.appendChild(nextLink);
+
+var nextStream = document.getElementById("nextStream");
+var nextLink = document.createElement('button');
 var nextText = document.createElement('p');
 nextText.textContent = "next";
+nextStream.appendChild(nextLink);
 nextLink.appendChild(nextText);
 
 (function buildPagination() {
@@ -47,11 +53,18 @@ nextLink.appendChild(nextText);
 	nextLink.addEventListener('click', function() {
 		offset = offset + 10;
 		console.log(offset);
-		
 		// remove old script
 		var oldScript = document.getElementById('script');
 		document.head.removeChild(oldScript);
-		
+		buildQuery();
+	}, false); // end nextLink click event
+
+	prevLink.addEventListener('click', function() {
+		offset = offset - 10;
+		console.log(offset);
+		// remove old script
+		var oldScript = document.getElementById('script');
+		document.head.removeChild(oldScript);
 		buildQuery();
 	}, false); // end nextLink click event
 
@@ -71,7 +84,7 @@ function myCallback(data){
 	var feedList = document.createElement('ul');
 	var streamsLen = data.streams.length;
 
-	function buildFeed() {
+	(function buildFeed() {
 		// clear out previous feed if any
 		feedContainer.innerHTML = "";
 
@@ -104,11 +117,12 @@ function myCallback(data){
 		
 		feedContainer.appendChild(feedDiv);	
 	
-	} // end buildFeed => prolly could make this self invoking too
+	}());
 	
 	// if no search results render message to page
-
-	buildFeed();
+	if(streamsLen < 1) {
+		feedContainer.innerHTML = "Sorry, your search query returned 0 results. Please try again.";
+	}
     
 } // end myCallback
 
