@@ -65,13 +65,19 @@ streamCount.appendChild(streamCountText);
 	}, false); // end nextLink click event
 
 	prevText.addEventListener('click', function() {
-		offset = offset - 10;
-		streamCountText.textContent = (offset + 1) + "/" + (offset + 10);
-		console.log(offset);
-		// remove old script
-		var oldScript = document.getElementById('script');
-		document.head.removeChild(oldScript);
-		buildQuery();
+		// if 
+                if(offset <= 0) {
+                   return false; 
+                }
+                else {
+                    offset = offset - 10;
+                    streamCountText.textContent = (offset + 1) + "/" + (offset + 10);
+                    console.log(offset);
+                    // remove old script
+                    var oldScript = document.getElementById('script');
+                    document.head.removeChild(oldScript);
+                    buildQuery();    
+                }
 	}, false); // end prevLink click event
 
 }()); // end buildPagination
@@ -109,6 +115,7 @@ function myCallback(data){
                         streamLink.setAttribute('href', data.streams[i].channel.url);
                         streamLink.setAttribute('target', '_blank');
                         streamLink.appendChild(streamTitle);
+                        gameTitle.classList.add('streamSubTitle');
 			gameTitle.textContent = data.streams[i].game;
 			viewerSpan.textContent = " - " + data.streams[i].viewers + " viewers";
 			viewerSpan.className = 'viewers';
