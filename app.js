@@ -2,6 +2,7 @@
 var streamSrc = 'starcraft';
 var offset = 0;
 
+var emptyString = "";
 var searchBtn = document.getElementById('searchBtn');
 var searchInput = document.getElementById('streamSearch');
 
@@ -13,14 +14,14 @@ function searchStreams() {
 	}
 	// else streamSrc equals input value
 	else {
-		offset = 0;
-		streamCountText.textContent = (offset + 1) + "/" + (offset + 10);
+		offset = 0; // reset offset for each search
+		streamCountText.textContent = (offset + 1) + "/" + (offset + 10); // reset streamCount
 		streamSrc = searchInput.value;
 		// find and remove previous script query from DOM
 		var oldScript = document.getElementById('script');
 		document.head.removeChild(oldScript);
 		buildQuery();
-		searchInput.value = "";
+		searchInput.value = ""; // reset input value
 	}
 }
 
@@ -35,18 +36,22 @@ function buildQuery() {
 }
 
 var prevStream = document.getElementById("prevStream");
-var prevLink = document.createElement('button');
-var prevText = document.createElement('p');
-prevText.innerHTML = "&#9668;"; //  &#9668;
-prevStream.appendChild(prevLink);
-prevLink.appendChild(prevText);
+//var prevLink = document.createElement('button');
+var prevText = document.createElement('i');
+prevText.classList.add("fa");
+prevText.classList.add("fa-chevron-circle-left");
+//prevText.innerHTML = "&#9668"; //  &#9668;
+prevStream.appendChild(prevText);
+//prevLink.appendChild(prevText);
 
 var nextStream = document.getElementById("nextStream");
-var nextLink = document.createElement('button');
-var nextText = document.createElement('p');
-nextText.innerHTML = "&#9658"; //  &#9658;
-nextStream.appendChild(nextLink);
-nextLink.appendChild(nextText);
+//var nextLink = document.createElement('button');
+var nextText = document.createElement('i');
+nextText.classList.add("fa");
+nextText.classList.add("fa-chevron-circle-right");
+//nextText.innerHTML = "&#9658"; //  &#9658;
+nextStream.appendChild(nextText);
+//nextLink.appendChild(nextText);
 
 var streamCount = document.getElementById('streamCount');
 var streamCountText = document.createElement('p');
@@ -55,7 +60,7 @@ streamCount.appendChild(streamCountText);
 
 (function buildPagination() {
 
-	nextLink.addEventListener('click', function() {
+	nextText.addEventListener('click', function() {
 		offset = offset + 10;
 		streamCountText.textContent = (offset + 1) + "/" + (offset + 10);
 		console.log(offset);
@@ -65,7 +70,7 @@ streamCount.appendChild(streamCountText);
 		buildQuery();
 	}, false); // end nextLink click event
 
-	prevLink.addEventListener('click', function() {
+	prevText.addEventListener('click', function() {
 		offset = offset - 10;
 		streamCountText.textContent = (offset + 1) + "/" + (offset + 10);
 		console.log(offset);
@@ -73,7 +78,7 @@ streamCount.appendChild(streamCountText);
 		var oldScript = document.getElementById('script');
 		document.head.removeChild(oldScript);
 		buildQuery();
-	}, false); // end nextLink click event
+	}, false); // end prevLink click event
 
 }()); // end buildPagination
 
@@ -93,7 +98,7 @@ function myCallback(data){
 
 	(function buildFeed() {
 		// clear out previous feed if any
-		feedContainer.innerHTML = "";
+		feedContainer.innerHTML = emptyString;
 
 		for (var i = 0; i < streamsLen; i++) {
 
@@ -119,7 +124,7 @@ function myCallback(data){
 			feedDiv.appendChild(feedList);
 			
 		} // end for loop
-		feedTotalDiv.innerHTML = "";
+		feedTotalDiv.innerHTML = emptyString;
 		feedTotalDiv.appendChild(feedTotalP);
 		
 		feedContainer.appendChild(feedDiv);	
