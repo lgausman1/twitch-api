@@ -36,22 +36,16 @@ function buildQuery() {
 }
 
 var prevStream = document.getElementById("prevStream");
-//var prevLink = document.createElement('button');
 var prevText = document.createElement('i');
 prevText.classList.add("fa");
 prevText.classList.add("fa-chevron-circle-left");
-//prevText.innerHTML = "&#9668"; //  &#9668;
 prevStream.appendChild(prevText);
-//prevLink.appendChild(prevText);
 
 var nextStream = document.getElementById("nextStream");
-//var nextLink = document.createElement('button');
 var nextText = document.createElement('i');
 nextText.classList.add("fa");
 nextText.classList.add("fa-chevron-circle-right");
-//nextText.innerHTML = "&#9658"; //  &#9658;
 nextStream.appendChild(nextText);
-//nextLink.appendChild(nextText);
 
 var streamCount = document.getElementById('streamCount');
 var streamCountText = document.createElement('p');
@@ -101,22 +95,26 @@ function myCallback(data){
 		feedContainer.innerHTML = emptyString;
 
 		for (var i = 0; i < streamsLen; i++) {
-
-			var li = document.createElement('li');
-			var streamTitle = document.createElement('h2');
-			var img = new Image();
-			var gameTitle = document.createElement('p');
-			var viewerSpan = document.createElement('span');
-			var gameDesc = document.createElement('p');
+                        // set up variables for feed list
+			var li = document.createElement('li'),
+                        streamTitle = document.createElement('h2'),
+                        streamLink = document.createElement('a'),
+                        img = new Image(),
+                        gameTitle = document.createElement('p'),
+                        viewerSpan = document.createElement('span'),
+                        gameDesc = document.createElement('p');
 
 			img.src = data.streams[i].preview.medium;
 			streamTitle.textContent = data.streams[i].channel.display_name;
+                        streamLink.setAttribute('href', data.streams[i].channel.url);
+                        streamLink.setAttribute('target', '_blank');
+                        streamLink.appendChild(streamTitle);
 			gameTitle.textContent = data.streams[i].game;
 			viewerSpan.textContent = " - " + data.streams[i].viewers + " viewers";
 			viewerSpan.className = 'viewers';
 			gameDesc.textContent = data.streams[i].channel.status;
 			li.appendChild(img);
-			li.appendChild(streamTitle);
+                        li.appendChild(streamLink);
 			li.appendChild(gameTitle);
 			gameTitle.appendChild(viewerSpan);
 			li.appendChild(gameDesc);
@@ -133,7 +131,8 @@ function myCallback(data){
 	
 	// if no search results render message to page
 	if(streamsLen < 1) {
-		feedContainer.innerHTML = "Sorry, your search query returned 0 results. Please try again.";
+		var noResults = "Sorry, your search query returned 0 results. Please try again.";
+                feedContainer.innerHTML = noResults;
 	}
     
 } // end myCallback

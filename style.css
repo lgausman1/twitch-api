@@ -15,7 +15,6 @@
 }
 /* style for background image */
 #bigDiv {
-	background-image: url();
 	position: fixed;
 	top: 50%;
 	left: 50%;
@@ -89,8 +88,22 @@
 }
 
 .searchBox {
-	padding: 20px;
+	padding: 35px 20px;
 	text-align: left;
+}
+
+.searchBox input {
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.searchBox button {
+    margin-left: 10px;
+    padding: 8px 12px;
+    border-radius: 5px;
+    background-color: purple;
+    color: white;
+    border: 0;
 }
 
 .stream {
