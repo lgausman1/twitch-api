@@ -122,6 +122,10 @@
     border: 0;
 }
 
+.searchBox button:hover {
+	background-color: #9803b7;
+}
+
 .stream {
     display: inline;
     float: left;
@@ -134,10 +138,18 @@
     color: #290131;
 }
 
+#prevStream:hover {
+	color: #9803b7;
+}
+
 #nextStream {
     font-size: 24px;
     margin-top: 12px;
     color: #290131;
+}
+
+#nextStream:hover {
+    color: #9803b7;	
 }
 
 #streamCount {
