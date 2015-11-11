@@ -157,3 +157,8 @@
     margin-top: 3px;
     width: 50px;
 }
+
+#loadingDiv {
+    font-size: 42px;
+    text-align: center;
+    }

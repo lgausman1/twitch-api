@@ -92,25 +92,25 @@ function myCallback(data){
 		for (var i = 0; i < streamsLen; i++) {
             // set up variables for feed list
 			var li = document.createElement('li'),
-                    streamTitle = document.createElement('h2'),
-                    streamLink = document.createElement('a'),
-                    img = new Image(),
-                    gameTitle = document.createElement('p'),
-                    viewerSpan = document.createElement('span'),
-                    gameDesc = document.createElement('p');
+                        streamTitle = document.createElement('h2'),
+                        streamLink = document.createElement('a'),
+                        img = new Image(),
+                        gameTitle = document.createElement('p'),
+                        viewerSpan = document.createElement('span'),
+                        gameDesc = document.createElement('p');
 
 			img.src = data.streams[i].preview.medium;
 			streamTitle.textContent = data.streams[i].channel.display_name;
-            streamLink.setAttribute('href', data.streams[i].channel.url);
-            streamLink.setAttribute('target', '_blank');
-            streamLink.appendChild(streamTitle);
-            gameTitle.classList.add('streamSubTitle');
+                        streamLink.setAttribute('href', data.streams[i].channel.url);
+                        streamLink.setAttribute('target', '_blank');
+                        streamLink.appendChild(streamTitle);
+                        gameTitle.classList.add('streamSubTitle');
 			gameTitle.textContent = data.streams[i].game;
 			viewerSpan.textContent = " - " + data.streams[i].viewers + " viewers";
 			viewerSpan.className = 'viewers';
 			gameDesc.textContent = data.streams[i].channel.status;
 			li.appendChild(img);
-            li.appendChild(streamLink);
+                        li.appendChild(streamLink);
 			li.appendChild(gameTitle);
 			gameTitle.appendChild(viewerSpan);
 			li.appendChild(gameDesc);
