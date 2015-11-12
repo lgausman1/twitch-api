@@ -7,7 +7,7 @@ emptyString = "";
 function buildQuery() {
 	var head = document.head,
 	script = document.createElement('script');
-	script.type = 'text/javascript';
+	script.type = 'application/javascript';
 	script.id = 'script';
 	script.src = 'https://api.twitch.tv/kraken/search/streams?q=' + streamSrc + '&callback=myCallback&limit=10&offset=' + offset + ''; 
 	head.appendChild(script);	
