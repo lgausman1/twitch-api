@@ -38,7 +38,7 @@
 #feedsHead {
 	height: 100px;
 	background-color: #290131;
-        box-shadow: inset 0px 0px 18px #0d0010;
+    box-shadow: inset 0px 0px 18px #0d0010;
 }
 
 #feedTotal {
@@ -60,19 +60,6 @@
 	list-style-type: none;
 }
 
-#feeds h2 {
-	margin-top: 0;
-	margin-bottom: 3px;
-}
-
-#feeds img {
-	display: inline;
-	float: left;
-	margin: 0 20px 20px 0;
-	width: 150px;
-    height: 100px;
-}
-
 #feeds li {
 	padding: 20px;
 	border-bottom: 1px dotted #ccc;
@@ -88,6 +75,20 @@
     text-decoration: underline;
 }
 
+#feeds h2 {
+	margin-top: 0;
+	margin-bottom: 3px;
+}
+
+#feeds img {
+	display: inline;
+	float: left;
+	margin: 0 20px 20px 0;
+	width: 150px;
+    height: 100px;
+}
+
+/* clearfix for floated elements*/
 #subHead:after, #feeds li:after {
 	content: "";
   	display: table;
@@ -126,30 +127,29 @@
 	background-color: #9803b7;
 }
 
+#searchError {
+	color: white;
+	font-size: 12px;
+	text-align: left;
+	padding-top: 25px;
+    margin-left: 25px;
+    margin-bottom: -25px;
+}
+
 .stream {
     display: inline;
     float: left;
     margin-left: 10px;
 }
 
-#prevStream {
+#prevStream, #nextStream {
     font-size: 24px;
     margin-top: 12px;
     color: #290131;
 }
 
-#prevStream:hover {
+#prevStream:hover, #nextStream:hover {
 	color: #9803b7;
-}
-
-#nextStream {
-    font-size: 24px;
-    margin-top: 12px;
-    color: #290131;
-}
-
-#nextStream:hover {
-    color: #9803b7;	
 }
 
 #streamCount {
